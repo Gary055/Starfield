@@ -13,7 +13,7 @@ void setup()
 void draw()
 {
   fill(161, 23, 242);
-  rect(0,500,1000,500);
+  //rect(0,500,1000,500);
   for(int i = 0; i < starfield.length; i++)
   {
     starfield[i].show();
@@ -24,7 +24,7 @@ void draw()
 class Particle
 {
   int myColorR, myColorG, myColorB, myOpacity;
-  float myX, myY, mySpeedX, mySpeedY;
+  double myX, myY, myAngle, mySpeed;
   Particle()
   {
     myX = 500;
@@ -33,29 +33,29 @@ class Particle
     myColorG = (int)(Math.random()*100)+100;
     myColorB = (int)(Math.random()*100)+100;
     myOpacity = (int)(Math.random()*50)+50;
-    mySpeedX = (float)(Math.random()*7)-3;
-    mySpeedY = (float)(Math.random()*-5);
+    myAngle = (Math.random() + 1)*Math.PI;
+    mySpeed = (Math.random()*3)+1;
   }
   void show()
   {
     noStroke();
     fill(myColorR, myColorG, myColorB, myOpacity);
-    ellipse(myX, myY, 3, 3);
+    ellipse((float)myX, (float)myY, 3, 3);
   }
   void pewpew()
   {
-    myX = myX + mySpeedX;
-    myY = myY + mySpeedY;
-    if(myX < -10 || myX > 1001 || myY < -10)
+    myX += Math.cos(myAngle)*mySpeed;
+    myY += Math.sin(myAngle)*mySpeed;
+    if(myX < -10 || myX > 1010 || myY < -10)
     {
     myX = 500;
     myY = 500;
     myColorR = (int)(Math.random()*100)+100;
     myColorG = (int)(Math.random()*100)+100;
     myColorB = (int)(Math.random()*100)+100;
-    myOpacity = (int)(Math.random()*25)+75;
-    mySpeedX = (float)(Math.random()*7)-3;
-    mySpeedY = (float)(Math.random()*-5);
+    myOpacity = (int)(Math.random()*50)+50;
+    myAngle = (Math.random() + 1)*Math.PI;
+    mySpeed = (Math.random()*3)+1;
     }
   }
   //your code here
