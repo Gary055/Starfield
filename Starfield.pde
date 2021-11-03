@@ -8,14 +8,13 @@ void setup()
   starfield = new Particle[100];
   for(int i = 0; i < starfield.length; i++)
   starfield[i] = new Particle();
-  linefield = new int [10];
+  linefield = new int [20];
   petro = new OddballParticle();
   //your code here
 }
 void draw()
 {
-  fill(161, 23, 242);
-  //rect(0,500,1000,500);
+  
   for(int i = 0; i < starfield.length; i++)
   {
     starfield[i].show();
@@ -25,8 +24,8 @@ void draw()
   {
     fill(161, 23, 242);
     
-    line(500+(i*40), 500, 500+(i*50), 1000);
-    line(500-(i*40), 500, 500-(i*50), 1000);
+    triangle(500+(i*25), 500, 500+(i*180), 1000, 502+(i*180.1), 1000);
+    triangle(500-(i*25), 500, 500-(i*180), 1000, 498-(i*180.1), 1000);
   }
   //your code here
 }
@@ -64,13 +63,13 @@ class Particle
     myColorB = (int)(Math.random()*100)+100;
     myOpacity = (int)(Math.random()*50)+50;
     myAngle = (Math.random() + 1)*Math.PI;
-    mySpeed = (Math.random()*3)+1;
+    mySpeed = (Math.random() * 3)+1;
     }
   }
   //your code here
 }
 
-class OddballParticle //inherits from Particle
+class OddballParticle extends Particle//inherits from Particle
 {
   float myX, myY;
   
